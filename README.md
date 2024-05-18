@@ -92,48 +92,13 @@ This will store all the data in the function channel_data. By giving a channel I
  The next concept we are tackling is how we can **store and generate results** from the data collected. Our target is to visually display all the data we have collected onto streamlit app. And in order to organise the data we have and display them in a good manner, we first need to store the data in a data waraehouse, prefereably in a SQL data warehouse like **MySQL workbench** In order to do that, we are connecting our **MySQL workbench to our python code editor** using the package **mysql connector** available for import in python. Once imported, we can use that as a function to store our MySQL connection credentials and use it while updating data to the database. 
 
 #### a. Creation of tables:
- The first step here is to **create the tables** in the form we need using python into our SQL database. An example of what is done in our project is given by the function below:
+ The first step here is to **create the tables** in the form we need using python into our SQL database. Once the tables are created we can move to the data insertion phase. We need to create a connection with SQL from python, we are using pymysql and sqlalchemy in our case.
 
- ```python
-def function_name(cursor):
-# Connect to MySQL
-    conn = mysql.connector.connect(
-    host="host_name",
-    user="user_name",
-    password="passcode",
-    database="db_name"
-)
-    # Create cursor object
-    cursor = conn.cursor()
 
-    create_table = """
-    CREATE TABLE IF NOT EXISTS table_1 (
-        id VARCHAR(255),
-        text TEXT,
-        author VARCHAR(255),
-        published_at DATETIME
-    )
-    """
-    cursor.execute(create_table)
-    conn.commit()
-    conn.close()
-
-# calling the function:
-function_name(cursor)
-
-```
-So, we define tables for the 3 tables that we need: Channels, Videos and Comments for the particular channel IDs. Once created they can be called with the function for the tables to pop up in our database. 
+So, we define tables for the 4 tables that we need: Channels, PLaylists, Videos and Comments for the particular channel IDs. Once created they can be called with the function for the tables to pop up in our database. 
 
 #### b. Insertion of data into tables:
-Secondly, once the tables are created, we need to create functions for the data to be imputed to those tables. For that, we will need to **insert data** into those tables. Hence we create **insert data functions** like how we did create table fucntion in python. What we did for create tables can be applied here, but only the insert data command of SQL has to be changed. An example is shown below
-
-```python
-insert_query = """
-    INSERT INTO table_1 (
-        id, text, author, published_at
-    ) VALUES (%s, %s, %s, %s)
-    """
-```
+Secondly, once the tables are created, we need to create functions for the data to be imputed to those tables. For that, we will need to **insert data** into those tables. Hence we create **insert data functions** like how we did create table fucntion in python. What we did for create tables can be applied here, but only the insert data command of SQL has to be changed. 
 
 Lastly, any data transformations in between, for example properly cleaning the published_at field can also be defined and called as a function to be applied on to the relevant data fields of the tables, while inserting the data itseld. All of these transformations relevant to properly displaying the data in streamlit are done in our code file.
 
@@ -150,8 +115,5 @@ Upon doing so, we can set up a parameter (from the plethora of display attribute
 
 ### 5. Querying the database from Streamlit
 We have been given a few pre-defined queries that need to be displayed in streamlit. For this too we can create a function in python that will be triggered by a streamlit parameters. For this, we are about to display the queries and their solutions in a separate sub page in streamlit using the st.sidebar parameter to create a navigation pane and st.sidebar.radio to have access between multiple pages. The code is discussed in the python file.
-
-### 6. Custom query window:
-This is an additional feature created to query the data in the database for results other than the ones from the pre defined queries. At the moment, it accepts only minimum difficulty queries for data clarity sake. 
 
 This is the end to our project on the display of Youtube Data using the YouTube data API, Python, SQL and Streamlit of course!
