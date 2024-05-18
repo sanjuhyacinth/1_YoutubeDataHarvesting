@@ -26,7 +26,7 @@ We now open our code editor, and import the important packages mainly the **goog
 ```python
 api_service_name = "youtube"
 api_version = "v3"
-api_key = "AIzaSyCI3baVf9LEFjnttyIbvJAi2jMKfjoJRmc"
+api_key = "api_key"
 youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey=api_key)
 ```
 This will be our common code to retrieve all data.
