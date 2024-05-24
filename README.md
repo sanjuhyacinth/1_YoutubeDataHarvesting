@@ -1,6 +1,3 @@
-# GUVI
-This repository is specifically created for the purpose of showcasing my Data Science Capstone Projects done during my course at GUVI
-
 # Project 1 - Youtube  Data Harvesting and Warehousing using SQL and Streamlit
 ## What is the project about?
 This particular social media project is about retreiving the data of specific YouTube channels that we want using the **Youtube API**. 
